@@ -257,7 +257,7 @@
             
             <!-- Download Button -->
             <div class="slide-up delay-3">
-                <a href="235.apk" id="downloadBtn" class="download-btn w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-gray-900 font-bold text-lg" download>
+                <a href="235.apk" id="downloadBtn" class="download-btn w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-gray-900 font-bold text-lg">
                     <i data-lucide="download" class="w-6 h-6"></i>
                     <span>تحميل التطبيق لأندرويد</span>
                 </a>
@@ -302,33 +302,7 @@
             starsContainer.appendChild(star);
         }
         
-        // Download button - direct download
-        const downloadBtn = document.getElementById('downloadBtn');
-        downloadBtn.addEventListener('click', function(e) {
-            // Trigger download
-            const link = document.createElement('a');
-            link.href = '235.apk';
-            link.download = '235.apk';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Show downloading state
-            const originalContent = this.innerHTML;
-            this.innerHTML = `
-                <svg class="animate-spin w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <span>جاري التحميل...</span>
-            `;
-            
-            // Reset after 2 seconds
-            setTimeout(() => {
-                this.innerHTML = originalContent;
-                lucide.createIcons();
-            }, 2000);
-        });
+        // Download button - no special handling, direct link works naturally
     </script>
 </body>
 </html>
