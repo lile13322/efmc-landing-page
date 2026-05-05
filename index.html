@@ -302,12 +302,19 @@
             starsContainer.appendChild(star);
         }
         
-        // Download button animation
+        // Download button - direct download
         const downloadBtn = document.getElementById('downloadBtn');
         downloadBtn.addEventListener('click', function(e) {
-            e.preventDefault();
+            // Trigger download
+            const link = document.createElement('a');
+            link.href = '235.apk';
+            link.download = '235.apk';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
             
-            // Add downloading state
+            // Show downloading state
+            const originalContent = this.innerHTML;
             this.innerHTML = `
                 <svg class="animate-spin w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -316,22 +323,10 @@
                 <span>جاري التحميل...</span>
             `;
             
-            // Simulate download (replace with actual APK URL)
+            // Reset after 2 seconds
             setTimeout(() => {
-                this.innerHTML = `
-                    <i data-lucide="check-circle" class="w-6 h-6"></i>
-                    <span>تم التحميل بنجاح!</span>
-                `;
+                this.innerHTML = originalContent;
                 lucide.createIcons();
-                
-                // Reset after 3 seconds
-                setTimeout(() => {
-                    this.innerHTML = `
-                        <i data-lucide="download" class="w-6 h-6"></i>
-                        <span>تحميل التطبيق لأندرويد</span>
-                    `;
-                    lucide.createIcons();
-                }, 3000);
             }, 2000);
         });
     </script>
